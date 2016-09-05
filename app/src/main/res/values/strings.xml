@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AndroidOpenGLES2demo</string>
+    <string name="up">Up</string>
+    <string name="down">Down</string>
 </resources>

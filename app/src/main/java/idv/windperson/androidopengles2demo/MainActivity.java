@@ -1,11 +1,14 @@
 package idv.windperson.androidopengles2demo;
 
+import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.view.ViewGroup.LayoutParams;
@@ -23,32 +26,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(_surfaceView);
 
         LinearLayout layout = new LinearLayout(this);
-        layout.setOrientation(LinearLayout.VERTICAL);
-        layout.setPadding(0, 200, 0, 0);
 
-        Button buttonUp = new Button(this);
-        buttonUp.setText("UP");
-        buttonUp.setWidth(110);
-        buttonUp.setHeight(85);
-        LinearLayout.LayoutParams layoutParamsUpBtn =
+        LinearLayout.LayoutParams layoutParamsUpDown =
                 new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParamsUpBtn.setMargins(0, 0, 0, 20);
-        layout.addView(buttonUp, layoutParamsUpBtn);
-
-        Button buttonDown = new Button(this);
-        buttonDown.setText("DOWN");
-        buttonDown.setWidth(110);
-        buttonDown.setHeight(85);
-        LinearLayout.LayoutParams layoutParamsDownBtn =
-                new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParamsDownBtn.setMargins(0, 20, 0, 0);
-        layout.addView(buttonDown, layoutParamsDownBtn);
-
+                        LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         layout.setGravity(Gravity.CENTER | Gravity.END);
 
-        addContentView(layout, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View linearLayoutView = inflater.inflate(R.layout.updown, layout, false);
+        layout.addView(linearLayoutView);
+
+        addContentView(layout, layoutParamsUpDown);
 
     }
 }
