@@ -12,10 +12,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     private GLSurfaceView _surfaceView;
+    private TextView _textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,34 @@ public class MainActivity extends AppCompatActivity {
         View linearLayoutView = inflater.inflate(R.layout.updown, layout, false);
         layout.addView(linearLayoutView);
 
+        View textView = inflater.inflate(R.layout.counter, layout, false);
+        layout.addView(textView);
+
         addContentView(layout, layoutParamsUpDown);
 
+        _textView = (TextView) findViewById(R.id.counter);
+        setUpDownBtnClickListeners();
+    }
+
+    private void setUpDownBtnClickListeners() {
+        Button upBtn, dwnBtn;
+        upBtn = (Button) findViewById(R.id.up);
+        dwnBtn = (Button) findViewById(R.id.down);
+
+        upBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Counter.getUpDownNextValue();
+                _textView.setText(String.valueOf(Counter.getUpDownValue()));
+            }
+        });
+
+        dwnBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Counter.getUpDownPreviousValue();
+                _textView.setText(String.valueOf(Counter.getUpDownValue()));
+            }
+        });
     }
 }
